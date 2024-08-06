@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Interactive Map of Kalyani with Comments</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+  <style>
+    #map {
+      height: 650px;
+      width: 100%;
+    }
+    body {
+      margin: 0; /* Remove default margin */
+    }
+  </style>
+</head>
+<body>
+
+<h3>Interactive Map of Kalyani with Comments</h3>
+<!-- The div element for the map -->
+<div id="map"></div>
+
+<!-- Load Leaflet JavaScript -->
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+<!-- Load Axios for making HTTP requests -->
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+<script>
+  // Initialize the map and set its view to Kalyani
+  var map = L.map('map').setView([22.9838, 88.4344], 14);
+
+  // Load and display tile layer on the map
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors'
+  }).addTo(map);
+
+  // Function to load comments from the backend
+  function loadComments() {
+    axios.get('http://127.0.0.1:5000/comments')
+      .then(function (response) {
+        response.data.forEach(function (comment) {
+          L.marker([comment.lat, comment.lng]).addTo(map)
+            .bindPopup(comment.text);
+        });
+      })
+      .catch(function (error) {
+        console.error('Error loading comments:', error);
+      });
+  }
+
+  // Load comments when the map is initialized
+  loadComments();
+
+  // Event listener for map clicks
+  map.on('click', function (e) {
+    var lat = e.latlng.lat;
+    var lng = e.latlng.lng;
+    var text = prompt("Enter your comment:");
+
+    if (text) {
+      // Add the comment to the map
+      var marker = L.marker([lat, lng]).addTo(map)
+        .bindPopup(text)
+        .openPopup();
+
+      // Submit the comment to the backend
+      axios.post('http://127.0.0.1:5000/comments', {
+        lat: lat,
+        lng: lng,
+        text: text
+      })
+      .then(function (response) {
+        console.log('Comment added:', response.data);
+      })
+      .catch(function (error) {
+        console.error('Error adding comment:', error);
+      });
+    }
+  });
+</script>
+
+</body>
+</html>
