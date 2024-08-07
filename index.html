@@ -12,12 +12,37 @@
     }
     body {
       margin: 0; /* Remove default margin */
+      font-family: Arial, sans-serif;
+    }
+    #search-form {
+      position: absolute;
+      top: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1000;
+      background: white;
+      padding: 10px;
+      border-radius: 4px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    }
+    #search-input {
+      padding: 5px;
+      width: 200px;
+    }
+    #search-button {
+      padding: 5px;
     }
   </style>
 </head>
 <body>
 
 <h3>Interactive Map of Kalyani with Comments</h3>
+<!-- Search form -->
+<div id="search-form">
+  <input type="text" id="search-input" placeholder="Search location">
+  <button id="search-button">Search</button>
+</div>
+
 <!-- The div element for the map -->
 <div id="map"></div>
 
@@ -76,6 +101,30 @@
       .catch(function (error) {
         console.error('Error adding comment:', error);
       });
+    }
+  });
+
+  // Event listener for search button
+  document.getElementById('search-button').addEventListener('click', function() {
+    var query = document.getElementById('search-input').value;
+    if (query) {
+      axios.get(`https://nominatim.openstreetmap.org/search?format=json&q=${query}`)
+        .then(function(response) {
+          var result = response.data[0];
+          if (result) {
+            var lat = result.lat;
+            var lon = result.lon;
+            map.setView([lat, lon], 14);
+            L.marker([lat, lon]).addTo(map)
+              .bindPopup(result.display_name)
+              .openPopup();
+          } else {
+            alert('Location not found');
+          }
+        })
+        .catch(function(error) {
+          console.error('Error searching location:', error);
+        });
     }
   });
 </script>
