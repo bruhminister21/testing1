@@ -1,0 +1,140 @@
+/* Global Styles */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+    color: #fff;
+    background-color: #1a1a1a;
+    line-height: 1.6;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Header Styles */
+header {
+    background: linear-gradient(to right, #ff0000, #b30000);
+    color: #fff;
+    padding: 60px 0;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+header h1 {
+    margin-bottom: 20px;
+    font-size: 2.5em;
+    letter-spacing: 1px;
+}
+
+header p {
+    font-size: 1.2em;
+    margin-bottom: 30px;
+}
+
+header .btn {
+    background-color: #000;
+    color: #ff0000;
+    padding: 12px 25px;
+    font-size: 1.1em;
+    font-weight: bold;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+header .btn:hover {
+    background-color: #b30000;
+    color: #fff;
+    transform: translateY(-3px);
+}
+
+header .btn:active {
+    transform: translateY(0);
+}
+
+/* Map Section Styles */
+#map {
+    padding: 60px 0;
+    background-color: #000;
+}
+
+#map h2 {
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 2em;
+    color: #ff0000;
+}
+
+#map-container {
+    height: 400px;
+    background-color: #333;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #999;
+}
+
+/* About Section Styles */
+#about {
+    padding: 60px 0;
+    background-color: #1a1a1a;
+}
+
+#about h2 {
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 2em;
+    color: #ff0000;
+}
+
+#about p {
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 1.1em;
+    max-width: 800px;
+    margin: 0 auto;
+    color: #ccc;
+}
+
+.team {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.team-member {
+    text-align: center;
+    max-width: 200px;
+}
+
+.team-member img {
+    width: 100%;
+    border-radius: 50%;
+    margin-bottom: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.team-member p {
+    font-size: 1.1em;
+    font-weight: bold;
+    color: #fff;
+}
+
+/* Footer Styles */
+footer {
+    background-color: #000;
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+    font-size: 0.9em;
+    box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.2);
+}
+

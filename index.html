@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Safe Route Explorer</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Include Leaflet CSS for the map and routing controls -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.css" />
+    <style>
+        #map-container {
+            width: 100%;
+            height: 400px;
+        }
+        .rating-form {
+            margin-top: 20px;
+        }
+        .rating-form label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .rating-form input[type="number"] {
+            width: 100px;
+        }
+        .rating-form button {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="container">
+            <h1>Discover Safe Routes & Explore</h1>
+            <p>Explore safe and reliable routes to your destination with SafeRouteExplorer.</p>
+        </div>
+    </header>
+
+    <!-- Map Section -->
+    <section id="map">
+        <div class="container">
+            <h2>Map</h2>
+            <!-- Map Embed -->
+            <iframe 
+                src="https://map.project-osrm.org/?z=7&center=22.964476%2C88.525508&hl=en&alt=0&srv=1" 
+                style="border: none; width: 100%; height: 400px;">
+            </iframe>
+            <!-- Rating System -->
+            <div class="rating-form">
+                <h3>Rate a Route</h3>
+                <form id="rating-form">
+                    <label for="start-location">Start Location:</label>
+                    <input type="text" id="start-location" name="start-location" required>
+                    <label for="end-location">End Location:</label>
+                    <input type="text" id="end-location" name="end-location" required>
+                    <label for="rating">Rating (1-5):</label>
+                    <input type="number" id="rating" name="rating" min="1" max="5" required>
+                    <button type="submit">Submit Rating</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <h2>About SafeRouteFinder</h2>
+            <p>SafeRouteFinder helps you find the safest routes in your area, avoiding traffic, hazards, and more.</p>
+            <div class="team">
+                <div class="team-member">
+                    <img src="person1.jpg" alt="Team Member 1">
+                    <p>John Doe - Developer</p>
+                </div>
+                <div class="team-member">
+                    <img src="person2.jpg" alt="Team Member 2">
+                    <p>Jane Smith - Designer</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 SafeRouteExplorer. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Leaflet JS for OSM Map -->
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <!-- Leaflet Routing Machine JS -->
+    <script src="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.js"></script>
+    <!-- Custom JS for Map -->
+    <script src="script.js" defer></script>
+</body>
+</html>
